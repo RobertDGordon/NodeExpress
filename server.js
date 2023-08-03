@@ -5,7 +5,11 @@ require('dotenv').config()
 
 let dbConnect = require('./dbConnect')
 
+const userRoutes = require('./routes/userRoutes')
+
 app.use(express.json())
+
+app.use('/api/users', userRoutes)
 
 app.get("/", (req, res) => {
   res.json({message: "Hello world!"})
