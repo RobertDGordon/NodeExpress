@@ -3,6 +3,8 @@ const app = express()
 
 require('dotenv').config()
 
+let dbConnect = require('./dbConnect')
+
 app.use(express.json())
 
 app.get("/", (req, res) => {
