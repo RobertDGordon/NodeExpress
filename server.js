@@ -1,9 +1,15 @@
 const express = require('express')
 const app = express()
 
+
+
 require('dotenv').config()
 
 let dbConnect = require('./dbConnect')
+
+const seed = require('./seeds/userSeeds')
+
+seed.seedUsers()
 
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require('./routes/authRoutes')
