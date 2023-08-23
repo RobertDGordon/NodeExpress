@@ -34,6 +34,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       required: true
+    },
+    // Array of foreign keys, setting to JSON data type
+    movie_ids: {
+      type: DataTypes.JSON
     }
   },
   {

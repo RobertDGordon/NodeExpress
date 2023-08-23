@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 const Models = require("../models");
 
@@ -42,14 +42,14 @@ const data = [
 ];
 
 const seedUsers = async () => {
-  // Loop over data, await is important to resolve the promise (I promise you that the findAll method is a promise) 
+  // Loop over data, await is important to resolve the promise (I promise you that the findAll method is a promise)
   for await (const element of data) {
     // Check if the user exists in the DB already
     const user = await Models.User.findAll({
       where: {
         email: element.email,
         firstName: element.firstName,
-        lastName: element.lastName
+        lastName: element.lastName,
       },
       raw: true,
     })
@@ -65,9 +65,9 @@ const seedUsers = async () => {
     // Check if the data returned has a user or not
     if (user.length === 0) {
       // If no user, add one
-      const rounds = 10 //any more than 10 will take exponentially more CPU power
+      const rounds = 10; //any more than 10 will take exponentially more CPU power
       const salt = await bcrypt.genSaltSync(rounds);
-      const originalPassword = element.password
+      const originalPassword = element.password;
       const hashedPassword = bcrypt.hashSync(originalPassword, salt);
       element.password = hashedPassword;
       Models.User.create(element)

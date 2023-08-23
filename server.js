@@ -1,15 +1,20 @@
 const express = require('express')
 const app = express()
 
-
-
 require('dotenv').config()
 
 let dbConnect = require('./dbConnect')
 
-const seed = require('./seeds/userSeeds')
+const Models = require('./models')
+const Seeds = require('./seeds')
 
-seed.seedUsers()
+//moved init calls to here in order to async await create table, and then run seeds
+async function init() {
+  await Models.User.sync()
+  await Seeds.Users.seedUsers()
+}
+
+init()
 
 const userRoutes = require('./routes/userRoutes')
 const authRoutes = require('./routes/authRoutes')
