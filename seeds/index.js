@@ -1,3 +1,4 @@
 module.exports = {
-  Users: require('./userSeeds')
+  Users: require('./userSeeds'),
+  Movies: require('./movieSeeds')
 }

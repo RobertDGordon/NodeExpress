@@ -13,6 +13,7 @@ async function init() {
   await Models.User.sync()
   // await Seeds.Users.seedUsers()
   await Models.Movie.sync()
+  await Seeds.Movies.seedMovies()
 }
 
 init()
