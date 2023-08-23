@@ -11,7 +11,8 @@ const Seeds = require('./seeds')
 //moved init calls to here in order to async await create table, and then run seeds
 async function init() {
   await Models.User.sync()
-  await Seeds.Users.seedUsers()
+  // await Seeds.Users.seedUsers()
+  await Models.Movie.sync()
 }
 
 init()
