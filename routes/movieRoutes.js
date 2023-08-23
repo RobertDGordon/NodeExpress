@@ -17,11 +17,6 @@ router.post("/create", (req, res) => {
   Controllers.movieController.createMovies(req.body, res)
 })
 
-// localhost:8000/api/movies/login
-router.post("/login", (req, res) => {
-  Controllers.movieController.getMoviesByEmail(req, res)
-})
-
 // localhost:8000/api/movies/:<user_id>
 router.put('/:id', (req, res) => {
   Controllers.movieController.updateMovie(req, res)
