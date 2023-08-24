@@ -12,6 +12,11 @@ router.get("/:id", (req, res) => {
   Controllers.userController.getUsersById(req, res)
 })
 
+// localhost:8000/api/users/:<user_id>
+router.get("/favorites/:id", (req, res) => {
+  Controllers.userController.getUsersById(req, res)
+})
+
 // localhost:8000/api/users/create
 router.post("/create", (req, res) => {
   Controllers.userController.createUsers(req.body, res)
@@ -25,6 +30,11 @@ router.post("/login", (req, res) => {
 // localhost:8000/api/users/:<user_id>
 router.put('/:id', (req, res) => {
   Controllers.userController.updateUser(req, res)
+})
+
+// localhost:8000/api/users/:<user_id>/movies
+router.put('/:id/movies', (req, res) => {
+  Controllers.userController.updateMovieIds(req, res)
 })
 
 // localhost:8000/api/users/:<user_id>

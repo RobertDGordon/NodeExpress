@@ -7,10 +7,19 @@ router.get("/", (req, res) => {
   Controllers.movieController.getMovies(res)
 })
 
+// localhost:8000/api/movies/list
+router.post("/list", (req, res) => {
+  console.log('list movies')
+  Controllers.movieController.getMoviesByIds(req, res)
+})
+
 // localhost:8000/api/movies/:<user_id>
 router.get("/:id", (req, res) => {
+  console.log("movies by id")
   Controllers.movieController.getMoviesById(req, res)
 })
+
+
 
 // localhost:8000/api/movies/create
 router.post("/create", (req, res) => {

@@ -66,6 +66,34 @@ const updateUser = (req, res) => {
     })
 }
 
+const updateMovieIds = (req, res) => {
+  //first see if the user id exists
+  Models.User.findAll({ where: {id: req.params.id}})
+  .then((data) => {
+    if(data.length > 0){
+      console.log(data[0])
+      console.log("input", req.body.movie_id)
+      const movie_ids = data[0].movie_ids
+      movie_ids.push(req.body.movie_id)
+      Models.User.update({movie_ids}, {where: {id: req.params.id}})
+      .then((data) => {
+        res.send({result: 201, success: true, data: data})
+      })
+      .catch(err => {
+        console.log("Error:", err)
+        throw err
+      })
+    }else {
+      //user does not exist
+      res.status(404).json({success: false, message: "User not found"})
+    }
+  })
+  .catch(err => {
+    console.log("Error:", err)
+    throw err
+  })
+}
+
 const deleteUser = (req, res) => {
   Models.User.destroy( {where: {id: req.params.id}})
     .then((data) => {
@@ -78,5 +106,5 @@ const deleteUser = (req, res) => {
 }
 
 module.exports = {
-  getUsers, getUsersById, createUsers, updateUser, deleteUser
+  getUsers, getUsersById, createUsers, updateUser, updateMovieIds, deleteUser
 }

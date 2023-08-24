@@ -16,11 +16,12 @@ const signUpUser = async(data, res) => {
   Models.User.create(data)
     .then((data)=> {
       data.password = originalPassword
-      res.send({result: 201, data: data})
+      res.send({result: 201, success: true, data: data})
     })
     .catch(err => {
-      console.log("Error:", err)
-      throw err
+      console.log("Error:", err),
+      res.status(400).json({message: err})
+      // throw err
     })
 }
 
