@@ -71,10 +71,11 @@ const updateMovieIds = (req, res) => {
   Models.User.findAll({ where: {id: req.params.id}})
   .then((data) => {
     if(data.length > 0){
-      console.log(data[0])
-      console.log("input", req.body.movie_id)
+      // extract array from movie_ids
       const movie_ids = data[0].movie_ids
+      // add new movie id to array
       movie_ids.push(req.body.movie_id)
+      // update the record with new array
       Models.User.update({movie_ids}, {where: {id: req.params.id}})
       .then((data) => {
         res.send({result: 201, success: true, data: data})
