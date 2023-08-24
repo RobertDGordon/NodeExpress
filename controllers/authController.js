@@ -31,16 +31,17 @@ const loginUserByEmail = (data, res)=> {
   Models.User.scope('withPassword').findAll({ where: {email: email}})
     .then((data) => {
       //if user is found
-      if(data){
+      if(data.length > 0){
         if(data && bcrypt.compareSync(unhashedPassword, data[0].dataValues.password)){
           data[0].dataValues.password = undefined //removes the key from the response
           res.status(200).send({ success: true, data: data})
         } else {
           console.log('password is incorrect')
-          res.status(403).send({ success: false, data: "Wrong username or password!"})
+          res.status(403).send({ success: false, message: "Wrong username or password!"})
         }
       } else {
         //user is not found
+        res.status(403).send({ success: false, message: "Wrong username or password!"})
       }
       
     })

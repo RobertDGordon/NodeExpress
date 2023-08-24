@@ -8,7 +8,7 @@ router.post("/signup", (req, res) => {
   Controllers.authController.signUpUser(req.body, res)
 })
 
-//localhost:800/api/auth/login
+//localhost:8000/api/auth/login
 router.post("/login", (req, res) => {
   Controllers.authController.loginUserByEmail(req.body, res)
 })

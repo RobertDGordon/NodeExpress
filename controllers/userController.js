@@ -58,7 +58,7 @@ const createUsers = async (data, res) => {
 const updateUser = (req, res) => {
   Models.User.update(req.body, { where: {id: req.params.id}})
     .then((data) => {
-      res.send({result: 201, data: data})
+      res.send({result: 201, success: true, data: data})
     })
     .catch(err => {
       console.log("Error:", err)
